@@ -12,6 +12,7 @@ app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
+var temp = require("./temp.js")
 
 /*
  * Be sure to setup your config values before running this code. You can 
@@ -351,10 +352,23 @@ function receivedPostback(event) {
   // sendTextMessage(senderID, "Postback called");
   if(payload=="getstarted")
   {
-    sendTextMessage(senderID,"ازيك ! ");
-        sendTextMessage(senderID,"انا البوت الخاص بزيتونه !");
-            sendTextMessage(senderID,"دي اخر المنتاجت والعروض عندنا .. شوفها وقولي رآيك :D  ");
+      GetuserData(senderID,function(callback)
+      {
 
+        function getstarted1(){sendTextMessage(senderID,"ازيك يا "+callback.first_name +" <3 ");}
+        function getstarted2(){sendTextMessage(senderID,"ان البوت الخاص بزيتونه");}
+        function getstarted3(){sendTextMessage(senderID,"ودوري اني اساعدك تعملي الاوردر الى تحبيه :D");}
+         setTimeout(getstarted1,1000);
+          setTimeout(getstarted2,2000);
+            setTimeout(getstarted3,3000);
+            temp.Getproducts(function(call)
+            {
+              sendGenericMessage(senderID,call)
+            })
+
+
+
+      });
 
   }
 }
@@ -565,49 +579,14 @@ function sendButtonMessage(recipientId) {
  * Send a Structured Message (Generic Message type) using the Send API.
  *
  */
-function sendGenericMessage(recipientId) {
+function sendGenericMessage(recipientId,data) {
   var messageData = {
     recipient: {
       id: recipientId
     },
-    message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [{
-            title: "rift",
-            subtitle: "Next-generation virtual reality",
-            item_url: "https://www.oculus.com/en-us/rift/",               
-            image_url: SERVER_URL + "/assets/rift.png",
-            buttons: [{
-              type: "web_url",
-              url: "https://www.oculus.com/en-us/rift/",
-              title: "Open Web URL"
-            }, {
-              type: "postback",
-              title: "Call Postback",
-              payload: "Payload for first bubble",
-            }],
-          }, {
-            title: "touch",
-            subtitle: "Your Hands, Now in VR",
-            item_url: "https://www.oculus.com/en-us/touch/",               
-            image_url: SERVER_URL + "/assets/touch.png",
-            buttons: [{
-              type: "web_url",
-              url: "https://www.oculus.com/en-us/touch/",
-              title: "Open Web URL"
-            }, {
-              type: "postback",
-              title: "Call Postback",
-              payload: "Payload for second bubble",
-            }]
-          }]
-        }
-      }
+    message:data
     }
-  };  
+    
 
   callSendAPI(messageData);
 }
@@ -820,6 +799,17 @@ function callSendAPI(messageData) {
   });  
 }
 
+function GetuserData(SenderID,callback) {
+  request({
+    uri:'https://graph.facebook.com/v2.6/'+SenderID+'?access_token='+PAGE_ACCESS_TOKEN,
+    method:'GET',
+
+  }, function (error,data) 
+  {
+     var object=JSON.parse(data.body);
+     callback(object);
+  });
+}
 // Start server
 // Webhooks must be available via SSL with a certificate signed by a valid 
 // certificate authority.
