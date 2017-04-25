@@ -232,8 +232,15 @@ function receivedMessage(event) {
     var quickReplyPayload = quickReply.payload;
     console.log("Quick reply for message %s with payload %s",
       messageId, quickReplyPayload);
+    if(quickReplyPayload.indexOf("MessureX")>-1||quickReplyPayload.indexOf("MessureL")>-1||quickReplyPayload.indexOf("MessureXL")>-1||quickReplyPayload.indexOf("MessureXXL")>-1)
+    {
+      function Messure1(){sendTextMessage(senderID,"اكتبي لي العنوان الى هيوصل عليه");}
+            function Messure2(){sendTextMessage(senderID,"اكتبي العنوان بالشكل دا : المنصوره , شارع الجمهوريه , عماره 105 شقه رقم 3 ");}
+            setTimeout(Messure1,1000);
+            setTimeout(Messure2,2000);
 
-    sendTextMessage(senderID, "Quick reply tapped");
+
+    }
     return;
   }
 
@@ -410,7 +417,7 @@ function receivedPostback(event) {
         {
           "content_type":"text",
           "title":"XLL",
-          "payload":"MessureXLL"
+          "payload":"MessureXXL"
         }
       ]}
       sendQuickReply(senderID,Messure);
