@@ -58,7 +58,7 @@ function Getproducts(callback) {
 	                "title":"عرض التفاصيل",
 	                "payload":"showdetails"
 	              }              
-	            ] ;
+	            ] 
 	        	}
 	        ]	
 			
