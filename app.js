@@ -385,6 +385,36 @@ function receivedPostback(event) {
        setTimeout(showmedetals2,2000);
 
   }
+  if(payload.indexOf("addtocart")>-1)
+  {
+
+    var Messure= {
+      text: "قولي لي مقاسك ايه ",
+      quick_replies: [
+        {
+          "content_type":"text",
+          "title":"M",
+          "payload":"MessureX"
+        },
+        {
+          "content_type":"text",
+          "title":"L",
+          "payload":"MessureL"
+        },
+        {
+          "content_type":"text",
+          "title":"XL",
+          "payload":"MessureXL"
+        }
+        ,
+        {
+          "content_type":"text",
+          "title":"XLL",
+          "payload":"MessureXLL"
+        }
+      ]}
+      sendQuickReply(senderID,Messure);
+  }
 }
 
 /*
@@ -685,31 +715,12 @@ function sendReceiptMessage(recipientId) {
  * Send a message with Quick Reply buttons.
  *
  */
-function sendQuickReply(recipientId) {
+function sendQuickReply(recipientId,data) {
   var messageData = {
     recipient: {
       id: recipientId
     },
-    message: {
-      text: "What's your favorite movie genre?",
-      quick_replies: [
-        {
-          "content_type":"text",
-          "title":"Action",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
-        },
-        {
-          "content_type":"text",
-          "title":"Comedy",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
-        },
-        {
-          "content_type":"text",
-          "title":"Drama",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
-        }
-      ]
-    }
+    message: data
   };
 
   callSendAPI(messageData);
