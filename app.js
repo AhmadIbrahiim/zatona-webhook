@@ -372,6 +372,19 @@ function receivedPostback(event) {
       });
 
   }
+  if(payload.indexOf("showdetails")>-1)
+  {
+       function showmedetails1(){sendTextMessage(senderID,"دي الحاجات المتاحه علي العرض دا");}
+       function showmedetals2(){
+          temp.GetSub(function(call)
+          {
+            sendGenericMessage(senderID,call);
+          });
+       }
+       setTimeout(showmedetails1,1000);
+       setTimeout(showmedetals2,2000);
+
+  }
 }
 
 /*
