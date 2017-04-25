@@ -59,6 +59,8 @@ function Getproducts(callback) {
 	                "payload":"showdetails"
 	              }              
 	            ] ;
+	        	}
+	        ]	
 			
 
 	  callback(Ob);
