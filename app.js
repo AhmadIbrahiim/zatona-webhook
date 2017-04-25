@@ -358,14 +358,16 @@ function receivedPostback(event) {
         function getstarted1(){sendTextMessage(senderID,"ازيك يا "+callback.first_name +" <3 ");}
         function getstarted2(){sendTextMessage(senderID,"ان البوت الخاص بزيتونه");}
         function getstarted3(){sendTextMessage(senderID,"ودوري اني اساعدك تعملي الاوردر الى تحبيه :D");}
-         setTimeout(getstarted1,1000);
-          setTimeout(getstarted2,2000);
-            setTimeout(getstarted3,3000);
-            temp.Getproducts(function(call)
+        function getstarted4(){temp.Getproducts(function(call)
             {
              console.log(call);
               sendGenericMessage(senderID,call)
-            });
+            });}
+         setTimeout(getstarted1,1000);
+          setTimeout(getstarted2,2000);
+            setTimeout(getstarted3,3000);
+              setTimeout(getstarted4,4000);
+            
 
       });
 
