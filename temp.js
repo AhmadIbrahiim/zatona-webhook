@@ -77,6 +77,6 @@ function Getproducts(callback) {
 
 
 
-module.exports=Getproducts;
+exports.Getproducts=Getproducts;
 
 
