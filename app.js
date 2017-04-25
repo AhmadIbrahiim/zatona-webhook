@@ -349,6 +349,14 @@ function receivedPostback(event) {
   // When a postback is called, we'll send a message back to the sender to 
   // let them know it was successful
   // sendTextMessage(senderID, "Postback called");
+  if(payload=="getstarted")
+  {
+    sendTextMessage(senderID,"ازيك ! ");
+        sendTextMessage(senderID,"انا البوت الخاص بزيتونه !");
+            sendTextMessage(senderID,"دي اخر المنتاجت والعروض عندنا .. شوفها وقولي رآيك :D  ");
+
+
+  }
 }
 
 /*
