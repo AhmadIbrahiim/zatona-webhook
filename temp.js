@@ -1,3 +1,4 @@
+
 function Getproducts(callback) {
 
 	var Ob =[
@@ -57,7 +58,7 @@ function Getproducts(callback) {
 	                "title":"عرض التفاصيل",
 	                "payload":"showdetails"
 	              }              
-	            ] 
+	            ] ;
 			
 
 	  callback(Ob);
