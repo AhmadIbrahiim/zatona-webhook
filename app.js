@@ -363,11 +363,9 @@ function receivedPostback(event) {
             setTimeout(getstarted3,3000);
             temp.Getproducts(function(call)
             {
-           // console.log(call);
+             console.log(call);
               sendGenericMessage(senderID,call)
-            })
-
-
+            });
 
       });
 
